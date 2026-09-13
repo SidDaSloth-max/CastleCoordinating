@@ -1,6 +1,0 @@
-Save the Castle Coordinating & Event Planning logo image into this folder as:
-
-    logo.png
-
-It's referenced in the header, hero, footer, schema markup, and social-share (Open
-Graph) tags on every page. Once it's here, delete this text file.

@@ -129,6 +129,18 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   z-index: 0;
   opacity: 0.55;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center 55%;
+  background-size: min(640px, 80%) auto;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
 .hero .container { position: relative; z-index: 1; }
 .hero .eyebrow {
   font-family: "Alex Brush", cursive;
