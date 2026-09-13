@@ -1,20 +1,22 @@
+/* Palette sampled directly from the Castle Coordinating logo illustration
+   (roof blue, stone cream, dress rose, hedge sage, ink linework). */
 :root {
-  --ink: #3a3226;
-  --ink-muted: #6f6353;
-  --blue: #8a9fb0;
-  --blue-mid: #6c8598;
-  --blue-dark: #52697c;
-  --blue-darker: #46596b;
-  --blue-pale: #eef3f2;
-  --cream: #fbf7ee;
-  --cream-deep: #f1e8d4;
-  --sage: #8a9a7e;
-  --sage-deep: #5f7256;
-  --rose: #e3b8bd;
-  --rose-deep: #97495f;
-  --rose-darker: #7d3a4d;
-  --border-color: #e6dcc4;
-  --star: #c9a34d;
+  --ink: #333c3c;
+  --ink-muted: #63706e;
+  --blue: #6088a0;
+  --blue-mid: #4d7086;
+  --blue-dark: #3c5866;
+  --blue-darker: #2e4450;
+  --blue-pale: #dde8ec;
+  --cream: #faf6ec;
+  --cream-deep: #f0e6cf;
+  --sage: #90a880;
+  --sage-deep: #6d8560;
+  --rose: #c9a89e;
+  --rose-deep: #8a5f57;
+  --rose-darker: #6f4b45;
+  --border-color: #e2d6b8;
+  --star: #c2a355;
 }
 
 * { box-sizing: border-box; }
@@ -123,12 +125,6 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   position: relative;
   overflow: hidden;
 }
-.hero-graphic {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.55;
-}
 .hero::before {
   content: "";
   position: absolute;
@@ -136,8 +132,8 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   background-image: url('../images/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center 55%;
-  background-size: min(640px, 80%) auto;
-  opacity: 0.12;
+  background-size: min(720px, 85%) auto;
+  opacity: 0.16;
   z-index: 0;
   pointer-events: none;
 }
