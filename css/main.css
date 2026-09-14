@@ -428,10 +428,17 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
   height: 38px;
   border-radius: 50%;
   background: rgba(251, 247, 238, 0.1);
-  transition: background 0.25s ease, transform 0.25s ease;
+  background-size: cover;
+  background-position: center;
+  transition: filter 0.25s ease, transform 0.25s ease;
 }
-.social-icons a:hover { background: var(--rose-deep); transform: translateY(-2px); }
+.social-icons a:hover { filter: brightness(1.1); transform: translateY(-2px); }
 .social-icons svg { width: 18px; height: 18px; fill: #fbf7ee; }
+.social-icons a.icon-fb { background-color: #1877f2; }
+.social-icons a.icon-ig {
+  background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.social-icons a.icon-knot { background-image: url('../images/theknot-icon.png'); }
 .footer-bottom {
   font-size: 0.82rem;
   color: #9aa9a8;
