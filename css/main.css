@@ -129,11 +129,11 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('../images/hero-bg.jpg');
+  background-image: url('../images/hero-scene.webp');
   background-repeat: no-repeat;
-  background-position: center 55%;
-  background-size: min(720px, 85%) auto;
-  opacity: 0.16;
+  background-position: center 58%;
+  background-size: min(1000px, 115%) auto;
+  opacity: 0.2;
   z-index: 0;
   pointer-events: none;
 }
