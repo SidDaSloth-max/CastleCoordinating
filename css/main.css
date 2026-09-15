@@ -39,12 +39,6 @@
     linear-gradient(120deg, var(--blue-vivid-light) 0%, var(--blue-fade) 100%);
   --blue-btn-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   --blue-btn-size: 140px 140px, cover, cover, cover, cover, cover, cover;
-  /* Hand-drawn pencil-line outlines for the CTA buttons — same wobbly-rect technique, three weights */
-  --btn-line-thin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cfilter id='r1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='2' seed='2' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='4'/%3E%3C/filter%3E%3Crect x='6' y='6' width='188' height='88' rx='44' fill='none' stroke='%232e4450' stroke-width='1.6' filter='url(%23r1)'/%3E%3C/svg%3E");
-  --btn-line-medium: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cfilter id='r2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='2' seed='5' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='4'/%3E%3C/filter%3E%3Crect x='6' y='6' width='188' height='88' rx='44' fill='none' stroke='%232e4450' stroke-width='2.2' filter='url(%23r2)'/%3E%3C/svg%3E");
-  --btn-line-bold: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cfilter id='r3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='2' seed='9' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='4'/%3E%3C/filter%3E%3Crect x='6' y='6' width='188' height='88' rx='44' fill='none' stroke='%232e4450' stroke-width='3' filter='url(%23r3)'/%3E%3C/svg%3E");
-  /* Same thin wobble, light stroke — for buttons sitting on the dark navy CTA band */
-  --btn-line-thin-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cfilter id='r4'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='2' seed='2' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='4'/%3E%3C/filter%3E%3Crect x='6' y='6' width='188' height='88' rx='44' fill='none' stroke='%23fbf7ee' stroke-width='1.6' filter='url(%23r4)'/%3E%3C/svg%3E");
   --green-pale: #eef2e7;
   --cream: #faf6ec;
   --cream-deep: #f0e6cf;
@@ -145,13 +139,8 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   background-repeat: var(--blue-btn-repeat);
   background-size: var(--blue-btn-size);
   color: var(--blue-darker) !important;
-  padding: 5px 12px;
+  padding: 9px 18px;
   border-radius: 24px;
-  border: 8px solid transparent;
-  border-image-source: var(--btn-line-thin);
-  border-image-slice: 46;
-  border-image-width: 8px;
-  border-image-repeat: stretch;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -242,17 +231,13 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   background-repeat: var(--blue-btn-repeat);
   background-size: var(--blue-btn-size);
   color: var(--blue-darker);
-  padding: 9px 28px;
+  padding: 17px 40px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.08rem;
   display: inline-block;
-  border: 14px solid transparent;
-  border-image-source: var(--btn-line-medium);
-  border-image-slice: 46;
-  border-image-width: 14px;
-  border-image-repeat: stretch;
+  border: none;
   cursor: pointer;
   box-shadow: 0 8px 22px rgba(111, 163, 194, 0.35);
   transition: all 0.3s ease, filter 0.2s ease;
@@ -263,9 +248,9 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   transform: translateY(-2px);
 }
 .hero .btn-primary,
-.page-hero .btn-primary { background-image: var(--blue-btn-image-alt); border-image-source: var(--btn-line-bold); }
-.reviews-section .btn-primary { background-image: var(--blue-btn-image-alt2); border-image-source: var(--btn-line-thin); }
-.cta-section .btn-primary { background-image: var(--blue-btn-image-alt2); border-image-source: var(--btn-line-thin-light); }
+.page-hero .btn-primary { background-image: var(--blue-btn-image-alt); }
+.reviews-section .btn-primary,
+.cta-section .btn-primary { background-image: var(--blue-btn-image-alt2); }
 .btn-secondary {
   background: transparent;
   color: var(--blue-darker);
