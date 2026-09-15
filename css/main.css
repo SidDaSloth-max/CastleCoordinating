@@ -257,7 +257,7 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   height: 34px;
   top: 14%;
   right: 6%;
-  opacity: 0.6;
+  opacity: 0.32;
   background-image: url('../images/bird-1.png'), url('../images/bird-3.png'), url('../images/bird-4.png');
   background-position: 0 16px, 30px 0, 52px 14px;
   background-size: 17px auto, 13px auto, 19px auto;
@@ -267,7 +267,7 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   height: 30px;
   top: 10%;
   left: 5%;
-  opacity: 0.55;
+  opacity: 0.28;
   background-image: url('../images/bird-2.png'), url('../images/bird-4.png');
   background-position: 0 0, 34px 12px;
   background-size: 14px auto, 20px auto;
@@ -277,7 +277,7 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   height: 32px;
   bottom: 12%;
   right: 8%;
-  opacity: 0.55;
+  opacity: 0.28;
   background-image: url('../images/bird-3.png'), url('../images/bird-1.png'), url('../images/bird-2.png');
   background-position: 0 2px, 32px 14px, 58px 0;
   background-size: 12px auto, 16px auto, 11px auto;
