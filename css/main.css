@@ -11,12 +11,24 @@
   --blue-vivid: #6fa3c2;
   --blue-vivid-light: #a9cfdd;
   --blue-fade: #f2f8fa;
-  --blue-btn: linear-gradient(135deg, var(--blue-vivid) 0%, var(--blue-vivid-light) 55%, var(--blue-fade) 100%);
-  --blue-btn-hover: linear-gradient(135deg, var(--blue-mid) 0%, var(--blue-vivid) 55%, var(--blue-vivid-light) 100%);
-  --green-vivid: var(--sage-deep);
-  --green-vivid-light: var(--sage);
-  --green-fade: #eff3e9;
-  --green-wash: radial-gradient(circle at top left, var(--green-vivid) 0%, var(--green-vivid-light) 15%, var(--green-fade) 45%, var(--green-fade) 100%);
+  --watercolor-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --blue-btn-image:
+    var(--watercolor-noise),
+    radial-gradient(55% 75% at 20% 15%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 55%),
+    radial-gradient(70% 90% at 82% 30%, rgba(169,207,221,0.65) 0%, rgba(169,207,221,0) 60%),
+    radial-gradient(85% 65% at 60% 105%, rgba(111,163,194,0.55) 0%, rgba(111,163,194,0) 60%),
+    radial-gradient(75% 65% at 8% 95%, rgba(111,163,194,0.4) 0%, rgba(111,163,194,0) 55%),
+    linear-gradient(160deg, var(--blue-fade) 0%, var(--blue-vivid-light) 100%);
+  --blue-btn-image-hover:
+    var(--watercolor-noise),
+    radial-gradient(55% 75% at 20% 15%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 55%),
+    radial-gradient(70% 90% at 82% 30%, rgba(111,163,194,0.75) 0%, rgba(111,163,194,0) 60%),
+    radial-gradient(85% 65% at 60% 105%, var(--blue-mid) 0%, rgba(77,112,134,0) 60%),
+    radial-gradient(75% 65% at 8% 95%, rgba(111,163,194,0.55) 0%, rgba(111,163,194,0) 55%),
+    linear-gradient(160deg, var(--blue-vivid-light) 0%, var(--blue-vivid) 100%);
+  --blue-btn-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  --blue-btn-size: 140px 140px, cover, cover, cover, cover, cover;
+  --green-pale: #eef2e7;
   --cream: #faf6ec;
   --cream-deep: #f0e6cf;
   --sage: #90a880;
@@ -112,7 +124,9 @@ nav.main-nav a {
 }
 nav.main-nav a:hover { color: var(--rose-deep); }
 .call-btn {
-  background: var(--blue-btn);
+  background-image: var(--blue-btn-image);
+  background-repeat: var(--blue-btn-repeat);
+  background-size: var(--blue-btn-size);
   color: var(--blue-darker) !important;
   padding: 9px 18px;
   border-radius: 24px;
@@ -120,7 +134,7 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   text-decoration: none;
   white-space: nowrap;
 }
-.call-btn:hover { background: var(--blue-btn-hover); }
+.call-btn:hover { background-image: var(--blue-btn-image-hover); }
 
 /* Hero — soft watercolor sky wash, ink text, castle-line silhouette */
 .hero {
@@ -170,7 +184,9 @@ nav.main-nav a:hover { color: var(--rose-deep); }
 }
 .hero-ctas { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
 .btn-primary {
-  background: var(--blue-btn);
+  background-image: var(--blue-btn-image);
+  background-repeat: var(--blue-btn-repeat);
+  background-size: var(--blue-btn-size);
   color: var(--blue-darker);
   padding: 17px 40px;
   border-radius: 30px;
@@ -184,7 +200,7 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   transition: all 0.3s ease;
 }
 .btn-primary:hover {
-  background: var(--blue-btn-hover);
+  background-image: var(--blue-btn-image-hover);
   box-shadow: 0 10px 26px rgba(111, 163, 194, 0.45);
   transform: translateY(-2px);
 }
@@ -332,7 +348,7 @@ p.section-sub {
 .service-card p { color: var(--ink-muted); margin: 0; font-size: 0.97rem; }
 
 /* Why-us / steps */
-.process-section { background: var(--green-wash); }
+.process-section { background: var(--green-pale); }
 .process-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -364,7 +380,7 @@ p.section-sub {
 .process-step p { margin: 0; color: var(--ink-muted); font-size: 0.94rem; }
 
 /* Service areas */
-.areas-section { background: var(--green-wash); }
+.areas-section { background: var(--green-pale); }
 .areas-note {
   max-width: 640px;
   margin: 0 auto;
@@ -416,7 +432,7 @@ p.section-sub {
 .about-facts dd { margin: 4px 0 0; color: var(--ink-muted); }
 
 /* Trust / reviews badge */
-.reviews-section { background: linear-gradient(180deg, #fff, var(--green-fade)); text-align: center; }
+.reviews-section { background: linear-gradient(180deg, #fff, var(--green-pale)); text-align: center; }
 .stars-full { display: flex; justify-content: center; gap: 6px; margin-bottom: 18px; }
 .stars-full svg { width: 30px; height: 30px; fill: var(--star); }
 .review-badge {
@@ -449,7 +465,7 @@ p.section-sub {
 .contact-card a.plain-link { text-decoration: underline; font-weight: 600; color: var(--blue-darker); }
 
 /* Contact form */
-.contact-form-section { background: var(--green-wash); padding: 76px 20px; }
+.contact-form-section { background: var(--green-pale); padding: 76px 20px; }
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -490,7 +506,7 @@ p.section-sub {
 .form-status.error { color: var(--rose-deep); }
 
 /* Mini in-page CTA — breaks up long stretches of content between sections */
-.mini-cta { padding: 44px 20px; text-align: center; background: var(--green-wash); }
+.mini-cta { padding: 44px 20px; text-align: center; background: var(--green-pale); }
 .mini-cta p { margin: 0 0 18px; color: var(--ink-muted); font-size: 1.05rem; }
 
 /* Final CTA — deep dusty-blue band, like a frame around the paper */
