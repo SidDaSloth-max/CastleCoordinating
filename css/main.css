@@ -8,6 +8,12 @@
   --blue-dark: #3c5866;
   --blue-darker: #2e4450;
   --blue-pale: #dde8ec;
+  --blue-vivid: #1772a9;
+  --blue-vivid-light: #4a90b8;
+  --blue-fade: #eef5f9;
+  --blue-wash: radial-gradient(circle at top left, var(--blue-vivid) 0%, var(--blue-vivid-light) 8%, var(--blue-fade) 24%, var(--blue-fade) 100%);
+  --blue-btn: linear-gradient(135deg, var(--blue-vivid) 0%, var(--blue-vivid-light) 60%, var(--blue-fade) 100%);
+  --blue-btn-hover: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-vivid) 60%, var(--blue-vivid-light) 100%);
   --cream: #faf6ec;
   --cream-deep: #f0e6cf;
   --sage: #90a880;
@@ -103,15 +109,16 @@ nav.main-nav a {
 }
 nav.main-nav a:hover { color: var(--rose-deep); }
 .call-btn {
-  background: var(--rose-deep);
+  background: var(--blue-btn);
   color: #fff !important;
   padding: 9px 18px;
   border-radius: 24px;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(20, 45, 60, 0.3);
 }
-.call-btn:hover { background: var(--rose-darker); }
+.call-btn:hover { background: var(--blue-btn-hover); }
 
 /* Hero — soft watercolor sky wash, ink text, castle-line silhouette */
 .hero {
@@ -161,7 +168,7 @@ nav.main-nav a:hover { color: var(--rose-deep); }
 }
 .hero-ctas { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
 .btn-primary {
-  background: var(--rose-deep);
+  background: var(--blue-btn);
   color: #fff;
   padding: 17px 40px;
   border-radius: 30px;
@@ -171,12 +178,13 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   display: inline-block;
   border: none;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(151, 73, 95, 0.28);
+  box-shadow: 0 8px 22px rgba(23, 114, 169, 0.32);
+  text-shadow: 0 1px 2px rgba(20, 45, 60, 0.3);
   transition: all 0.3s ease;
 }
 .btn-primary:hover {
-  background: var(--rose-darker);
-  box-shadow: 0 10px 26px rgba(151, 73, 95, 0.38);
+  background: var(--blue-btn-hover);
+  box-shadow: 0 10px 26px rgba(23, 114, 169, 0.42);
   transform: translateY(-2px);
 }
 .btn-secondary {
@@ -323,7 +331,7 @@ p.section-sub {
 .service-card p { color: var(--ink-muted); margin: 0; font-size: 0.97rem; }
 
 /* Why-us / steps */
-.process-section { background: var(--blue-pale); }
+.process-section { background: var(--blue-wash); }
 .process-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -355,7 +363,7 @@ p.section-sub {
 .process-step p { margin: 0; color: var(--ink-muted); font-size: 0.94rem; }
 
 /* Service areas */
-.areas-section { background: var(--blue-pale); }
+.areas-section { background: var(--blue-wash); }
 .areas-note {
   max-width: 640px;
   margin: 0 auto;
@@ -407,7 +415,7 @@ p.section-sub {
 .about-facts dd { margin: 4px 0 0; color: var(--ink-muted); }
 
 /* Trust / reviews badge */
-.reviews-section { background: linear-gradient(180deg, #fff, var(--blue-pale)); text-align: center; }
+.reviews-section { background: linear-gradient(180deg, #fff, var(--blue-fade)); text-align: center; }
 .stars-full { display: flex; justify-content: center; gap: 6px; margin-bottom: 18px; }
 .stars-full svg { width: 30px; height: 30px; fill: var(--star); }
 .review-badge {
@@ -440,7 +448,7 @@ p.section-sub {
 .contact-card a.plain-link { text-decoration: underline; font-weight: 600; color: var(--blue-darker); }
 
 /* Contact form */
-.contact-form-section { background: var(--blue-pale); padding: 76px 20px; }
+.contact-form-section { background: var(--blue-wash); padding: 76px 20px; }
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -481,7 +489,7 @@ p.section-sub {
 .form-status.error { color: var(--rose-deep); }
 
 /* Mini in-page CTA — breaks up long stretches of content between sections */
-.mini-cta { padding: 44px 20px; text-align: center; background: var(--blue-pale); }
+.mini-cta { padding: 44px 20px; text-align: center; background: var(--blue-wash); }
 .mini-cta p { margin: 0 0 18px; color: var(--ink-muted); font-size: 1.05rem; }
 
 /* Final CTA — deep dusty-blue band, like a frame around the paper */
