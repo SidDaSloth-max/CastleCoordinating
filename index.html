@@ -151,12 +151,64 @@
     </div>
   </section>
 
+  <!-- Get a Quote -->
+  <section class="contact-form-section" id="estimate">
+    <div class="container">
+      <h2 class="section-title">Get a Free Quote</h2>
+      <p class="section-sub">Every wedding and event is different, so pricing is customized to your vision — tell me a bit about yours and I'll follow up with a personalized quote.</p>
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="contactFormEl">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hidden-field" aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+        <div class="form-group">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-phone">Phone (optional)</label>
+          <input type="tel" id="contact-phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="contact-event-date">Event Date (if known)</label>
+          <input type="text" id="contact-event-date" name="event_date" placeholder="e.g. June 2027, or not sure yet">
+        </div>
+        <fieldset class="form-group checkbox-fieldset">
+          <legend>What are you planning?</legend>
+          <div class="checkbox-group">
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Full-Service Event Planning"><span>Full-Service Event Planning</span></label>
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Partial Planning"><span>Partial Planning</span></label>
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Day-Of Coordination"><span>Day-Of Coordination</span></label>
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Wedding"><span>Wedding</span></label>
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Corporate Event / Gala"><span>Corporate Event / Gala</span></label>
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Private or Social Event"><span>Private or Social Event</span></label>
+            <label class="checkbox-chip"><input type="checkbox" name="interest" value="Other"><span>Other</span></label>
+          </div>
+        </fieldset>
+        <div class="form-group">
+          <label for="contact-guest-count">Approx. Guest Count</label>
+          <input type="number" id="contact-guest-count" name="guest_count" min="1" inputmode="numeric">
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="5" placeholder="Tell me about your vision, venue, or any other pertinent details."></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Request My Quote</button>
+      </form>
+      <p class="form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
   <!-- About teaser -->
   <section class="about-section">
     <div class="container">
       <div class="about-copy">
         <h2 class="section-title">Your Vision, Beautifully Coordinated</h2>
-        <p>From intimate gatherings to grand celebrations, Castle Coordinating &amp; Event Planning crafts seamless and unforgettable events. Specializing in bespoke wedding and event planning, my dedication transforms your vision into a stunning reality.</p>
+        <p>From intimate gatherings to grand celebrations, Castle Coordinating &amp; Event Planning crafts seamless and unforgettable events. Specializing in tailored wedding and event planning, my dedication transforms your vision into a stunning reality.</p>
         <p>I handle every detail with precision and passion, ensuring a stress-free and spectacular experience — whether you're dreaming of a destination wedding or a lavish corporate gala, I am at your service. <a href="about.html" style="color:var(--blue-darker); font-weight:600; text-decoration:underline;">Read my full story &rarr;</a></p>
       </div>
       <div class="about-facts">
@@ -302,58 +354,6 @@
         <p>Castle Coordinating &amp; Event Planning is proud to be rated 5 stars on Google by the couples and hosts I've had the honor of working with.</p>
         <a href="tel:+13603814022" class="btn-primary" onclick="trackCall('reviews_phone_button')">Call to Get Started</a>
       </div>
-    </div>
-  </section>
-
-  <!-- Get a Quote -->
-  <section class="contact-form-section" id="estimate">
-    <div class="container">
-      <h2 class="section-title">Get a Free Quote</h2>
-      <p class="section-sub">Every wedding and event is different, so pricing is customized to your vision — tell me a bit about yours and I'll follow up with a personalized quote.</p>
-      <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="contactFormEl">
-        <input type="hidden" name="form-name" value="contact">
-        <p class="hidden-field" aria-hidden="true">
-          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-        </p>
-        <div class="form-group">
-          <label for="contact-name">Name</label>
-          <input type="text" id="contact-name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="contact-email">Email</label>
-          <input type="email" id="contact-email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="contact-phone">Phone (optional)</label>
-          <input type="tel" id="contact-phone" name="phone">
-        </div>
-        <div class="form-group">
-          <label for="contact-event-date">Event Date (if known)</label>
-          <input type="text" id="contact-event-date" name="event_date" placeholder="e.g. June 2027, or not sure yet">
-        </div>
-        <div class="form-group">
-          <label for="contact-interest">What are you planning?</label>
-          <select id="contact-interest" name="interest">
-            <option>Full-Service Event Planning</option>
-            <option>Partial Planning</option>
-            <option>Day-Of Coordination</option>
-            <option>Wedding</option>
-            <option>Corporate Event / Gala</option>
-            <option>Private or Social Event</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="contact-guest-count">Approx. Guest Count</label>
-          <input type="number" id="contact-guest-count" name="guest_count" min="1" inputmode="numeric">
-        </div>
-        <div class="form-group">
-          <label for="contact-message">Message</label>
-          <textarea id="contact-message" name="message" rows="5" placeholder="Tell me about your vision, venue, or anything else that helps."></textarea>
-        </div>
-        <button type="submit" class="btn-primary">Request My Quote</button>
-      </form>
-      <p class="form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
     </div>
   </section>
 

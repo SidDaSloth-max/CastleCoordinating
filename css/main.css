@@ -515,6 +515,39 @@ p.section-sub {
   box-shadow: 0 0 0 3px rgba(108, 133, 152, 0.15);
 }
 .form-group textarea { resize: vertical; min-height: 120px; }
+.checkbox-fieldset { border: none; padding: 0; margin: 0; }
+.checkbox-fieldset legend {
+  font-weight: 600;
+  color: var(--blue-darker);
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 0.95rem;
+}
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+}
+.checkbox-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 0.92rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.checkbox-chip:has(input:checked) { border-color: var(--blue-mid); background: var(--blue-pale); }
+.checkbox-chip input {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  accent-color: var(--blue-mid);
+  cursor: pointer;
+}
 .contact-form button[type="submit"] { margin-top: 10px; }
 .hidden-field { position: absolute; left: -9999px; }
 .form-status { max-width: 600px; margin: 16px auto 0; font-size: 0.95rem; font-weight: 600; text-align: center; }
