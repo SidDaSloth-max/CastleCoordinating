@@ -1,11 +1,11 @@
 /css/*
-  Cache-Control: public, max-age=600, must-revalidate
+  Cache-Control: public, max-age=60, must-revalidate
 
 /js/*
-  Cache-Control: public, max-age=600, must-revalidate
+  Cache-Control: public, max-age=60, must-revalidate
 
 /images/*
-  Cache-Control: public, max-age=86400, must-revalidate
+  Cache-Control: public, max-age=300, must-revalidate
 
 /favicon.svg
   Cache-Control: public, max-age=86400, must-revalidate
