@@ -248,42 +248,44 @@ p.section-sub {
 .faq-item h4 { color: var(--blue-darker); font-size: 1.04rem; margin: 0 0 6px; }
 .faq-item p { margin: 0; }
 
-/* Gallery carousel */
+/* Gallery carousel — one large photo at a time */
 .gallery-section { background: #fff; padding-top: 48px; padding-bottom: 48px; }
-.carousel { position: relative; }
+.carousel { position: relative; max-width: 640px; margin: 0 auto; }
 .carousel-track {
   display: flex;
-  gap: 14px;
+  gap: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 4px 4px 16px;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color) transparent;
+  scrollbar-width: none;
 }
-.carousel-track::-webkit-scrollbar { height: 8px; }
-.carousel-track::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+.carousel-track::-webkit-scrollbar { display: none; }
 .carousel-slide {
-  flex: 0 0 auto;
-  width: 160px;
-  height: 200px;
-  scroll-snap-align: start;
-  border-radius: 10px;
+  flex: 0 0 100%;
+  width: 100%;
+  height: min(70vh, 520px);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream-deep);
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(70, 89, 107, 0.15);
 }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: #fff;
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-  font-size: 1.4rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  font-size: 1.6rem;
   line-height: 1;
   color: var(--blue-darker);
   cursor: pointer;
@@ -293,12 +295,12 @@ p.section-sub {
   z-index: 2;
   transition: background 0.2s ease, color 0.2s ease;
 }
-.carousel-btn.prev { left: -8px; }
-.carousel-btn.next { right: -8px; }
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
 .carousel-btn:hover { background: var(--rose-deep); color: #fff; border-color: var(--rose-deep); }
 @media (max-width: 640px) {
-  .carousel-btn { display: none; }
-  .carousel-slide { width: 140px; height: 176px; }
+  .carousel-slide { height: 60vh; }
+  .carousel-btn { width: 40px; height: 40px; font-size: 1.4rem; }
 }
 
 /* Services grid */

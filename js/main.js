@@ -90,15 +90,13 @@ function initGalleryCarousel() {
   if (!track || !prev || !next) return;
 
   function step() {
-    var slide = track.querySelector('.carousel-slide');
-    var gap = 14;
-    return slide ? slide.getBoundingClientRect().width + gap : 174;
+    return track.clientWidth;
   }
   prev.addEventListener('click', function () {
-    track.scrollBy({ left: -step() * 2, behavior: 'smooth' });
+    track.scrollBy({ left: -step(), behavior: 'smooth' });
   });
   next.addEventListener('click', function () {
-    track.scrollBy({ left: step() * 2, behavior: 'smooth' });
+    track.scrollBy({ left: step(), behavior: 'smooth' });
   });
 }
 
