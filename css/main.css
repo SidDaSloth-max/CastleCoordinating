@@ -243,6 +243,45 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   opacity: 0.75;
   background-image: url('../images/cloud-photo-2.png');
 }
+
+/* Tiny flying-bird groups, extracted from the user's photos — a small nod to the birds already
+   in the logo illustration. One small cluster per page, always at a much smaller scale than the source. */
+.bg-birds {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+}
+.bg-flock-a {
+  width: 78px;
+  height: 34px;
+  top: 14%;
+  right: 6%;
+  opacity: 0.6;
+  background-image: url('../images/bird-1.png'), url('../images/bird-3.png'), url('../images/bird-4.png');
+  background-position: 0 16px, 30px 0, 52px 14px;
+  background-size: 17px auto, 13px auto, 19px auto;
+}
+.bg-flock-b {
+  width: 70px;
+  height: 30px;
+  top: 10%;
+  left: 5%;
+  opacity: 0.55;
+  background-image: url('../images/bird-2.png'), url('../images/bird-4.png');
+  background-position: 0 0, 34px 12px;
+  background-size: 14px auto, 20px auto;
+}
+.bg-flock-c {
+  width: 84px;
+  height: 32px;
+  bottom: 12%;
+  right: 8%;
+  opacity: 0.55;
+  background-image: url('../images/bird-3.png'), url('../images/bird-1.png'), url('../images/bird-2.png');
+  background-position: 0 2px, 32px 14px, 58px 0;
+  background-size: 12px auto, 16px auto, 11px auto;
+}
 .hero .eyebrow {
   font-family: "Alex Brush", cursive;
   font-size: 2.2rem;
