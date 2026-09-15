@@ -209,6 +209,40 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   opacity: 0.75;
   background-image: url('../images/cloud-photo-3.png');
 }
+/* Shorter/narrower variants sized for the page-hero sections used across services, feedback, and the location pages */
+.bg-cloud-ph-a {
+  width: 380px;
+  height: 112px;
+  top: -16px;
+  left: -50px;
+  opacity: 0.7;
+  background-image: url('../images/cloud-photo-3.png');
+}
+.bg-cloud-ph-b {
+  width: 380px;
+  height: 112px;
+  top: -16px;
+  right: -50px;
+  opacity: 0.7;
+  background-image: url('../images/cloud-photo-3.png');
+  transform: scaleX(-1);
+}
+.bg-cloud-ph-c {
+  width: 105px;
+  height: 205px;
+  bottom: -30px;
+  left: -45px;
+  opacity: 0.75;
+  background-image: url('../images/cloud-photo-1.png');
+}
+.bg-cloud-ph-d {
+  width: 115px;
+  height: 255px;
+  bottom: -50px;
+  right: -50px;
+  opacity: 0.75;
+  background-image: url('../images/cloud-photo-2.png');
+}
 .hero .eyebrow {
   font-family: "Alex Brush", cursive;
   font-size: 2.2rem;
