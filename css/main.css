@@ -248,6 +248,59 @@ p.section-sub {
 .faq-item h4 { color: var(--blue-darker); font-size: 1.04rem; margin: 0 0 6px; }
 .faq-item p { margin: 0; }
 
+/* Gallery carousel */
+.gallery-section { background: #fff; padding-top: 48px; padding-bottom: 48px; }
+.carousel { position: relative; }
+.carousel-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+.carousel-track::-webkit-scrollbar { height: 8px; }
+.carousel-track::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+.carousel-slide {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 200px;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(70, 89, 107, 0.15);
+}
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--blue-darker);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.carousel-btn.prev { left: -8px; }
+.carousel-btn.next { right: -8px; }
+.carousel-btn:hover { background: var(--rose-deep); color: #fff; border-color: var(--rose-deep); }
+@media (max-width: 640px) {
+  .carousel-btn { display: none; }
+  .carousel-slide { width: 140px; height: 176px; }
+}
+
 /* Services grid */
 .services-section { background: #fff; }
 .services-grid {
@@ -297,6 +350,19 @@ p.section-sub {
 }
 .process-step h3 { margin: 0 0 8px; color: var(--blue-darker); font-size: 1.05rem; }
 .process-step p { margin: 0; color: var(--ink-muted); font-size: 0.94rem; }
+
+/* Service areas */
+.areas-section { background: var(--blue-pale); }
+.areas-note {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 34px 28px;
+}
+.areas-note p { color: var(--ink-muted); margin: 0 0 20px; }
 
 /* About / trust */
 .about-section .container {

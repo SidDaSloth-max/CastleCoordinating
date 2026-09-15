@@ -55,6 +55,7 @@ function initContactForm() {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn.textContent;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
     status.textContent = '';
@@ -76,13 +77,76 @@ function initContactForm() {
         status.textContent = 'Something went wrong sending your message. Please call (360) 381-4022 instead.';
         status.className = 'form-status error';
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
+        submitBtn.textContent = originalText;
+      });
+  });
+}
+
+// Gallery carousel prev/next
+function initGalleryCarousel() {
+  var track = document.getElementById('carouselTrack');
+  var prev = document.getElementById('carouselPrev');
+  var next = document.getElementById('carouselNext');
+  if (!track || !prev || !next) return;
+
+  function step() {
+    var slide = track.querySelector('.carousel-slide');
+    var gap = 14;
+    return slide ? slide.getBoundingClientRect().width + gap : 174;
+  }
+  prev.addEventListener('click', function () {
+    track.scrollBy({ left: -step() * 2, behavior: 'smooth' });
+  });
+  next.addEventListener('click', function () {
+    track.scrollBy({ left: step() * 2, behavior: 'smooth' });
+  });
+}
+
+// Netlify Forms AJAX submission (generic, works for any form id/status pair)
+function initNetlifyForm(formId, statusId, successMessage, failureMessage) {
+  var form = document.getElementById(formId);
+  var status = document.getElementById(statusId);
+  if (!form || !status) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('Submission failed');
+        trackFormSubmit(formId);
+        form.style.display = 'none';
+        status.textContent = successMessage;
+        status.className = 'form-status success';
+      })
+      .catch(function () {
+        status.textContent = failureMessage;
+        status.className = 'form-status error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
       });
   });
 }
 
 function initAll() {
   initContactForm();
+  initGalleryCarousel();
+  initNetlifyForm(
+    'feedbackFormEl',
+    'feedbackFormStatus',
+    "Thanks for letting me know — I'll take a look.",
+    'Something went wrong sending your feedback. Please email castlecoordinating@gmail.com instead.'
+  );
 }
 
 if (document.readyState === 'loading') {
