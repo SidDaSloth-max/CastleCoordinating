@@ -798,3 +798,10 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
 .lightbox-next { right: 16px; top: 50%; transform: translateY(-50%); }
 @media (max-width: 640px) { .lightbox { padding: 12px; } .lightbox-btn { width: 40px; height: 40px; } }
 .album-link { text-align: center; margin: 26px 0 0; }
+
+/* Album groups — one heading per wedding, newest first */
+.album-group { margin: 0 0 40px; padding: 0; }
+.album-group:last-child { margin-bottom: 0; }
+.album-group-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+.album-group-head h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 1.85rem); color: var(--blue-darker); }
+.album-date { margin: 0; color: var(--ink-muted); font-size: 1rem; }
