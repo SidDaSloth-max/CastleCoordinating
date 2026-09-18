@@ -282,6 +282,26 @@ nav.main-nav a:hover { color: var(--rose-deep); }
   background-position: 0 2px, 32px 14px, 58px 0;
   background-size: 12px auto, 16px auto, 11px auto;
 }
+
+/* Lone birds lifted from the logo illustration (images/logo-bird-N.png, transparent PNGs), scattered
+   rarely down each page — one per section at most, kept to the far edges. */
+.bg-lbird {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background: center / contain no-repeat;
+}
+.lb-1 { width: 22px; height: 26px; background-image: url('../images/logo-bird-1.png'); }
+.lb-2 { width: 40px; height: 20px; background-image: url('../images/logo-bird-2.png'); }
+.lb-3 { width: 38px; height: 21px; background-image: url('../images/logo-bird-3.png'); }
+.lb-4 { width: 32px; height: 23px; background-image: url('../images/logo-bird-4.png'); }
+.lb-p1 { top: 9%; left: 3%; }
+.lb-p2 { top: 14%; right: 4%; transform: scaleX(-1); }
+.lb-p3 { bottom: 12%; left: 5%; transform: rotate(-8deg); }
+.lb-p4 { bottom: 16%; right: 3%; transform: rotate(6deg); }
+section:has(> .bg-lbird) { position: relative; }
+section:has(> .bg-lbird) > .container { position: relative; z-index: 1; }
 .hero .eyebrow {
   font-family: "Alex Brush", cursive;
   font-size: 2.2rem;
