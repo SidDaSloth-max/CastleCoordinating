@@ -805,3 +805,4 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
 .album-group-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
 .album-group-head h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 1.85rem); color: var(--blue-darker); }
 .album-date { margin: 0; color: var(--ink-muted); font-size: 1rem; }
+.album-credit { margin: 0 0 0 auto; color: var(--ink-muted); font-size: 0.95rem; font-style: italic; }
