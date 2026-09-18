@@ -82,21 +82,57 @@ function initContactForm() {
   });
 }
 
-// Gallery carousel prev/next
+// Gallery carousel: no arrow buttons — swipe/trackpad, arrow keys, mouse drag,
+// or click a faded neighbor photo to bring it to the center.
 function initGalleryCarousel() {
   var track = document.getElementById('carouselTrack');
-  var prev = document.getElementById('carouselPrev');
-  var next = document.getElementById('carouselNext');
-  if (!track || !prev || !next) return;
+  if (!track) return;
+  var slides = track.querySelectorAll('.carousel-slide');
 
-  function step() {
-    return track.clientWidth;
+  function centerOn(slide) {
+    var left = slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+    track.scrollTo({ left: left, behavior: 'smooth' });
   }
-  prev.addEventListener('click', function () {
-    track.scrollBy({ left: -step(), behavior: 'smooth' });
+  function nearestSlide() {
+    var mid = track.scrollLeft + track.clientWidth / 2, best = null, bestDist = Infinity;
+    slides.forEach(function (s) {
+      var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
+      if (d < bestDist) { bestDist = d; best = s; }
+    });
+    return best;
+  }
+
+  var startX = 0, startScroll = 0, dragging = false, moved = false;
+  track.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    dragging = true; moved = false;
+    startX = e.clientX; startScroll = track.scrollLeft;
+    track.classList.add('dragging');
   });
-  next.addEventListener('click', function () {
-    track.scrollBy({ left: step(), behavior: 'smooth' });
+  window.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 4) moved = true;
+    track.scrollLeft = startScroll - dx;
+  });
+  window.addEventListener('pointerup', function () {
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove('dragging');
+    if (moved) centerOn(nearestSlide());
+  });
+
+  track.addEventListener('click', function (e) {
+    if (moved) { moved = false; return; }
+    var slide = e.target.closest('.carousel-slide');
+    if (slide && slide !== nearestSlide()) centerOn(slide);
+  });
+
+  track.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var list = Array.prototype.slice.call(slides);
+    var i = list.indexOf(nearestSlide()) + (e.key === 'ArrowRight' ? 1 : -1);
+    if (i >= 0 && i < list.length) { e.preventDefault(); centerOn(list[i]); }
   });
 }
 

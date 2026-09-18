@@ -402,21 +402,37 @@ p.section-sub {
 .faq-item h4 { color: var(--blue-darker); font-size: 1.04rem; margin: 0 0 6px; }
 .faq-item p { margin: 0; }
 
-/* Gallery carousel — one large photo at a time */
+/* Gallery carousel — three photos across: the center one in full, the neighbors showing
+   only their inner third and fading out toward the page edge. Slide width is 60% of the
+   space left after the two gaps, so each neighbor's visible strip is exactly 1/3 of a photo. */
 .gallery-section { background: #fff; padding-top: 48px; padding-bottom: 48px; }
-.carousel { position: relative; max-width: 640px; margin: 0 auto; }
+.carousel {
+  --gap: 16px;
+  --slide-w: calc((100cqw - 2 * var(--gap)) * 0.6);
+  container-type: inline-size;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.12) 0%, #000 19%, #000 81%, rgba(0,0,0,0.12) 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,0.12) 0%, #000 19%, #000 81%, rgba(0,0,0,0.12) 100%);
+}
 .carousel-track {
+  position: relative;
   display: flex;
-  gap: 0;
+  gap: var(--gap);
+  padding: 4px calc((100cqw - var(--slide-w)) / 2) 14px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  cursor: grab;
+  outline-offset: -2px;
 }
+.carousel-track.dragging { cursor: grabbing; scroll-snap-type: none; }
 .carousel-track::-webkit-scrollbar { display: none; }
 .carousel-slide {
-  flex: 0 0 100%;
-  width: 100%;
+  flex: 0 0 var(--slide-w);
+  width: var(--slide-w);
   height: min(70vh, 520px);
   scroll-snap-align: center;
   scroll-snap-stop: always;
@@ -428,33 +444,10 @@ p.section-sub {
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(70, 89, 107, 0.15);
 }
-.carousel-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
-  font-size: 1.6rem;
-  line-height: 1;
-  color: var(--blue-darker);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.carousel-btn.prev { left: 12px; }
-.carousel-btn.next { right: 12px; }
-.carousel-btn:hover { background: var(--rose-deep); color: #fff; border-color: var(--rose-deep); }
+.carousel-slide img { width: 100%; height: 100%; object-fit: contain; display: block; -webkit-user-drag: none; user-select: none; }
 @media (max-width: 640px) {
-  .carousel-slide { height: 60vh; }
-  .carousel-btn { width: 40px; height: 40px; font-size: 1.4rem; }
+  .carousel { --gap: 10px; }
+  .carousel-slide { height: min(60vh, 400px); }
 }
 
 /* Services grid */
