@@ -741,3 +741,60 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
   .nav-toggle { display: block; }
   header.site-header { position: sticky; }
 }
+
+/* Album page — masonry grid with a simple full-screen photo viewer */
+.album-section { background: #fff; padding-top: 40px; padding-bottom: 64px; }
+.album-container { max-width: 1100px; }
+.album-grid { column-count: 3; column-gap: 16px; }
+.album-item {
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--cream-deep);
+  box-shadow: 0 3px 12px rgba(70, 89, 107, 0.14);
+  cursor: zoom-in;
+  break-inside: avoid;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.album-item:hover, .album-item:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(70, 89, 107, 0.22); }
+.album-item img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) { .album-grid { column-count: 2; } }
+@media (max-width: 480px) { .album-grid { column-gap: 10px; } .album-item { margin-bottom: 10px; } }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 44, 52, 0.92);
+  padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.lightbox-btn {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.92);
+  color: var(--blue-darker);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-btn:hover { background: #fff; }
+.lightbox-close { top: 16px; right: 16px; }
+.lightbox-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 16px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) { .lightbox { padding: 12px; } .lightbox-btn { width: 40px; height: 40px; } }
+.album-link { text-align: center; margin: 26px 0 0; }

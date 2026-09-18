@@ -237,3 +237,52 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(initAll, 0);
 }
+
+// Album page photo viewer
+(function initAlbumLightbox() {
+  var grid = document.getElementById('albumGrid');
+  if (!grid) return;
+  var items = Array.prototype.slice.call(grid.querySelectorAll('.album-item'));
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', 'Photo viewer');
+  box.innerHTML =
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close">&times;</button>' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo">&#8249;</button>' +
+    '<img alt="">' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo">&#8250;</button>';
+  document.body.appendChild(box);
+  var big = box.querySelector('img'), current = 0, lastFocus = null;
+
+  function show(i) {
+    current = (i + items.length) % items.length;
+    var src = items[current].querySelector('img');
+    big.src = src.currentSrc || src.src;
+    big.alt = src.alt;
+  }
+  function open(i) {
+    lastFocus = document.activeElement;
+    show(i);
+    box.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    box.querySelector('.lightbox-close').focus();
+  }
+  function close() {
+    box.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  items.forEach(function (it, i) { it.addEventListener('click', function () { open(i); }); });
+  box.querySelector('.lightbox-close').addEventListener('click', close);
+  box.querySelector('.lightbox-prev').addEventListener('click', function () { show(current - 1); });
+  box.querySelector('.lightbox-next').addEventListener('click', function () { show(current + 1); });
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(current - 1);
+    else if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
