@@ -461,10 +461,29 @@ p.section-sub {
   justify-content: center;
   background: var(--cream-deep);
   border-radius: 14px;
+  position: relative;
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(70, 89, 107, 0.15);
 }
 .carousel-slide img { width: 100%; height: 100%; object-fit: contain; display: block; -webkit-user-drag: none; user-select: none; }
+.slide-credit {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 20px);
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
 @media (max-width: 640px) {
   .carousel { --gap: 10px; }
   .carousel-slide { height: min(60vh, 400px); }
