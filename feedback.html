@@ -20,13 +20,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Jost:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" sizes="48x48" href="images/icons/favicon-48.png">
+<link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#46596b">
+<link rel="stylesheet" href="css/main.css?v=20261107">
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand">
+    <a href="/" class="brand">
       <img src="images/logo.webp" alt="Castle Coordinating & Event Planning logo" class="brand-logo-img" width="44" height="44" onerror="this.style.display='none';this.onerror=null;">
       <span>
         <span class="script">Castle</span>
@@ -37,12 +41,11 @@
     <nav class="main-nav" id="mainNav">
       <a href="services.html">Services</a>
       <a href="album.html">Album</a>
-      <a href="index.html#service-areas">Service Areas</a>
-      <a href="index.html#estimate">Get a Quote</a>
-      <a href="index.html#reviews">Reviews</a>
+      <a href="/#service-areas">Service Areas</a>
+      <a href="/#estimate">Get a Quote</a>
+      <a href="/#reviews">Reviews</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="feedback.html">Feedback</a>
       <a href="tel:+13603814022" class="call-btn" onclick="trackCall('header_phone_button')">Call (360) 381-4022</a>
     </nav>
   </div>
@@ -54,7 +57,7 @@
     <div class="bg-cloud bg-cloud-ph-b" aria-hidden="true"></div>
     <div class="bg-birds bg-flock-b" aria-hidden="true"></div>
     <div class="container">
-      <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Feedback</p>
+      <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Feedback</p>
       <h1>Website Feedback</h1>
       <p class="subhead">Found a broken link or something that doesn't look right? Let me know and I'll get it fixed.</p>
     </div>
@@ -70,16 +73,17 @@
         <p class="hidden-field" aria-hidden="true">
           <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
         </p>
+        <p class="form-note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
         <div class="form-group">
-          <label for="fb-name">Name</label>
-          <input type="text" id="fb-name" name="name" required>
+          <label for="fb-name">Name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="fb-name" name="name" autocomplete="name" required>
         </div>
         <div class="form-group">
           <label for="fb-email">Email (optional, if you want a reply)</label>
-          <input type="email" id="fb-email" name="email">
+          <input type="email" id="fb-email" name="email" autocomplete="email">
         </div>
         <div class="form-group">
-          <label for="fb-type">Type of Feedback</label>
+          <label for="fb-type">Type of Feedback <span class="req" aria-hidden="true">*</span></label>
           <select id="fb-type" name="feedback_type" required>
             <option value="" disabled selected>Select one</option>
             <option>Broken Link or Button</option>
@@ -91,7 +95,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="fb-message">What's the Issue?</label>
+          <label for="fb-message">What's the Issue? <span class="req" aria-hidden="true">*</span></label>
           <textarea id="fb-message" name="message" rows="5" required placeholder="Tell me what you saw, and which page it was on if you can."></textarea>
         </div>
         <button type="submit" class="btn-primary">Submit Feedback</button>
@@ -113,7 +117,7 @@
     </div>
 
     <nav class="footer-sitemap" aria-label="Site links">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="album.html">Album</a>
@@ -125,6 +129,7 @@
       <a href="wedding-planner-snohomish-wa.html">Snohomish</a>
       <a href="contact.html">Contact</a>
       <a href="feedback.html">Feedback</a>
+      <a href="privacy.html">Privacy</a>
     </nav>
 
     <div class="social-icons">
@@ -143,6 +148,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261107"></script>
 </body>
 </html>

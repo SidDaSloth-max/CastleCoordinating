@@ -14,25 +14,34 @@
 </script>
 
 <title>Wedding Planner &amp; Event Coordinator | Castle Coordinating</title>
-<meta name="description" content="5-star rated wedding &amp; event planner. Bespoke wedding coordinating, destination weddings, and corporate event planning. Call (360) 381-4022 — available 24/7.">
+<meta name="description" content="5-star rated wedding &amp; event planner. Tailored wedding coordinating, full-service event planning, and corporate galas. Call (360) 381-4022 — available 24/7.">
 <link rel="canonical" href="https://castlecoordinating.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Jost:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Castle Coordinating &amp; Event Planning">
 <meta property="og:title" content="Wedding Planner &amp; Event Coordinator | Castle Coordinating">
-<meta property="og:description" content="5-star rated wedding &amp; event planner. Bespoke wedding coordinating, destination weddings, and corporate event planning.">
+<meta property="og:description" content="5-star rated wedding &amp; event planner. Tailored wedding coordinating, full-service event planning, and corporate galas.">
 <meta property="og:url" content="https://castlecoordinating.com/">
-<meta property="og:image" content="https://castlecoordinating.com/images/logo.webp">
+<meta property="og:image" content="https://castlecoordinating.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Castle Coordinating &amp; Event Planning logo: a watercolor castle with a bride and groom">
 <meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Wedding Planner &amp; Event Coordinator | Castle Coordinating">
-<meta name="twitter:description" content="5-star rated wedding &amp; event planner. Bespoke wedding coordinating, destination weddings, and corporate event planning.">
-<meta name="twitter:image" content="https://castlecoordinating.com/images/logo.webp">
+<meta name="twitter:description" content="5-star rated wedding &amp; event planner. Tailored wedding coordinating, full-service event planning, and corporate galas.">
+<meta name="twitter:image" content="https://castlecoordinating.com/images/og-image.jpg">
+<meta name="twitter:image:alt" content="Castle Coordinating &amp; Event Planning logo: a watercolor castle with a bride and groom">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="48x48" href="images/icons/favicon-48.png">
+<link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#46596b">
 
 <script type="application/ld+json">
 {
@@ -41,6 +50,8 @@
   "name": "Castle Coordinating & Event Planning",
   "image": "https://castlecoordinating.com/images/logo.webp",
   "telephone": "+1-360-381-4022",
+  "logo": "https://castlecoordinating.com/images/logo.webp",
+  "address": { "@type": "PostalAddress", "addressRegion": "WA", "addressCountry": "US" },
   "email": "castlecoordinating@gmail.com",
   "url": "https://castlecoordinating.com/",
   "description": "From intimate gatherings to grand celebrations, Castle Coordinating & Event Planning crafts seamless and unforgettable weddings and events throughout Washington State.",
@@ -64,17 +75,18 @@
   },
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61554140120634",
-    "https://www.instagram.com/castleweddingcoordinating/"
+    "https://www.instagram.com/castleweddingcoordinating/",
+    "https://www.google.com/maps?cid=16629083969758744141"
   ]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=20261107">
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand">
+    <a href="/" class="brand">
       <img src="images/logo.webp" alt="Castle Coordinating & Event Planning logo" class="brand-logo-img" width="44" height="44" onerror="this.style.display='none';this.onerror=null;">
       <span>
         <span class="script">Castle</span>
@@ -89,8 +101,7 @@
       <a href="#estimate">Get a Quote</a>
       <a href="#reviews">Reviews</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="feedback.html">Feedback</a>
+      <a href="contact.html">Contact</a>
       <a href="tel:+13603814022" class="call-btn" onclick="trackCall('header_phone_button')">Call (360) 381-4022</a>
     </nav>
   </div>
@@ -161,17 +172,18 @@
         <p class="hidden-field" aria-hidden="true">
           <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
         </p>
+        <p class="form-note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
         <div class="form-group">
-          <label for="contact-name">Name</label>
-          <input type="text" id="contact-name" name="name" required>
+          <label for="contact-name">Name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="contact-name" name="name" autocomplete="name" required>
         </div>
         <div class="form-group">
-          <label for="contact-email">Email</label>
-          <input type="email" id="contact-email" name="email" required>
+          <label for="contact-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input type="email" id="contact-email" name="email" autocomplete="email" required>
         </div>
         <div class="form-group">
           <label for="contact-phone">Phone (optional)</label>
-          <input type="tel" id="contact-phone" name="phone">
+          <input type="tel" id="contact-phone" name="phone" autocomplete="tel">
         </div>
         <div class="form-group">
           <label for="contact-event-date">Event Date (if known)</label>
@@ -217,7 +229,7 @@
       <div class="review-badge">
         <h3>5.0 Stars on Google</h3>
         <p>Castle Coordinating &amp; Event Planning is proud to be rated 5 stars on Google by the couples and hosts I've had the honor of working with.</p>
-        <a href="https://www.google.com/search?q=castle+coordinating&amp;sca_esv=929e32f37502ba76&amp;rlz=1C1HKFL_enUS1230US1230&amp;amc=1&amp;aep=48&amp;prmd=ivns&amp;sxsrf=APpeQnsjrV8PJjdto0N4Y3705R0ITElzbg:1789767930161&amp;source=lnms&amp;sa=X&amp;ved=2ahUKEwiZidSNjfmWAxU4BzQIHWXaHMwQ0pQJegQICBAF#lrd=0x4a2479d80e5a006f:0xe6c65fc40d9cce4d,3,,,," class="btn-primary" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function'){gtag('event','review_click',{event_category:'engagement',event_label:'reviews_leave_review_button'});}">Leave a Review</a>
+        <a href="https://www.google.com/search?q=castle+coordinating&amp;sca_esv=929e32f37502ba76&amp;rlz=1C1HKFL_enUS1230US1230&amp;amc=1&amp;aep=48&amp;prmd=ivns&amp;sxsrf=APpeQnsjrV8PJjdto0N4Y3705R0ITElzbg:1789767930161&amp;source=lnms&amp;sa=X&amp;ved=2ahUKEwiZidSNjfmWAxU4BzQIHWXaHMwQ0pQJegQICBAF#lrd=0x4a2479d80e5a006f:0xe6c65fc40d9cce4d,3,,,," class="btn-primary" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function'){gtag('event','review_click',{link_location:'reviews_leave_review_button'});}">Leave a Review</a>
       </div>
     </div>
   </section>
@@ -265,7 +277,7 @@
         <div class="service-card">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#8a5f57" stroke-width="1.6"><path d="M3 21c2-6 6-9 9-9s7 3 9 9" stroke-linecap="round"/><circle cx="12" cy="7" r="4"/></svg>
           <h3>Weddings</h3>
-          <p>Dreaming of saying "I do" somewhere unforgettable? I plan destination celebrations near and far.</p>
+          <p>Dreaming of saying "I do" somewhere unforgettable? I plan weddings near and far.</p>
         </div>
         <div class="service-card">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#8a5f57" stroke-width="1.6"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6a4 4 0 0 1 8 0v2" stroke-linecap="round"/></svg>
@@ -376,7 +388,7 @@
     </div>
 
     <nav class="footer-sitemap" aria-label="Site links">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="album.html">Album</a>
@@ -388,6 +400,7 @@
       <a href="wedding-planner-snohomish-wa.html">Snohomish</a>
       <a href="contact.html">Contact</a>
       <a href="feedback.html">Feedback</a>
+      <a href="privacy.html">Privacy</a>
     </nav>
 
     <div class="social-icons">
@@ -406,6 +419,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261107"></script>
 </body>
 </html>
