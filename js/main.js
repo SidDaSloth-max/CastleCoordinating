@@ -14,10 +14,12 @@ mainNav.querySelectorAll('a').forEach(function (link) {
 var yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Fade the nav in once the user scrolls past the top of the hero
+// Fade the nav in once the user scrolls past the top of the homepage hero.
+// Inner pages have no full-screen hero, so their nav is always visible.
 var siteHeader = document.querySelector('.site-header');
+var hasHomeHero = !!document.querySelector('.hero');
 function updateHeaderVisibility() {
-  if (window.scrollY > 80) {
+  if (!hasHomeHero || window.scrollY > 80) {
     siteHeader.classList.add('visible');
   } else {
     siteHeader.classList.remove('visible');
@@ -68,7 +70,7 @@ function initContactForm() {
     })
       .then(function (response) {
         if (!response.ok) throw new Error('Submission failed');
-        trackFormSubmit('contact_form');
+        trackFormSubmit(form.getAttribute('name') + '_form');
         form.style.display = 'none';
         status.textContent = "Thank you! Your message has been sent — I'll be in touch soon.";
         status.className = 'form-status success';

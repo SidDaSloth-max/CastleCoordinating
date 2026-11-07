@@ -90,7 +90,8 @@ header.site-header {
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-header.site-header.visible {
+header.site-header.visible,
+header.site-header:focus-within {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -373,6 +374,11 @@ section:has(> .bg-lbird) > .container { position: relative; z-index: 1; }
 }
 .hero-badges span { white-space: nowrap; }
 .hero-badges .stars { color: var(--star); letter-spacing: 1px; }
+/* On narrow phones the no-wrap badges were wider than the screen and pushed the whole hero off-center */
+@media (max-width: 420px) {
+  .hero-badges { gap: 10px 20px; font-size: 1rem; }
+  .hero-badges span { white-space: normal; }
+}
 
 /* Page hero (sub pages) — same airy wash */
 .page-hero {
@@ -636,6 +642,7 @@ p.section-sub {
   max-width: 600px;
   margin: 0 auto;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 22px;
   background: #fff;
   padding: 40px;
@@ -664,6 +671,10 @@ p.section-sub {
   border-color: var(--blue-mid);
   box-shadow: 0 0 0 3px rgba(108, 133, 152, 0.15);
 }
+/* Let fields shrink to the card instead of keeping their intrinsic width (a long <option> made the Feedback form overflow at 320px) */
+.form-group select,
+.form-group textarea,
+.form-group input:not([type="checkbox"]) { width: 100%; min-width: 0; }
 .form-group textarea { resize: vertical; min-height: 120px; }
 .checkbox-fieldset { border: none; padding: 0; margin: 0; }
 .checkbox-fieldset legend {
