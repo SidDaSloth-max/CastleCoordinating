@@ -1,14 +1,27 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# CSS and JS are loaded with a ?v= query (see the <link>/<script> tags). Whenever css/main.css or js/main.js
+# changes, bump that ?v= value in every page so visitors pick up the change immediately; otherwise the
+# cached copy can be used for up to a day.
 /css/*
-  Cache-Control: public, max-age=60, must-revalidate
+  Cache-Control: public, max-age=86400
 
 /js/*
-  Cache-Control: public, max-age=60, must-revalidate
+  Cache-Control: public, max-age=86400
 
+# Never overwrite an image under the same name - give changed images a new file name (they cache for a week).
 /images/*
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=604800
 
 /favicon.svg
-  Cache-Control: public, max-age=86400, must-revalidate
+  Cache-Control: public, max-age=86400
+
+/site.webmanifest
+  Cache-Control: public, max-age=86400
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate

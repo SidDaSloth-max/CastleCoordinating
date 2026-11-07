@@ -29,23 +29,44 @@ function updateHeaderVisibility() {
 window.addEventListener('scroll', updateHeaderVisibility, { passive: true });
 updateHeaderVisibility();
 
-// GA4 event tracking
+// GA4 event tracking. Events: call_click, email_click, outbound_click, review_click,
+// generate_lead (quote / contact form) and feedback_submit. "link_location" = which button or link was used.
+// (GA4's own auto-collected event is named form_submit, so the forms use generate_lead to avoid clashing with it.)
 function trackCall(label) {
   if (typeof gtag === 'function') {
-    gtag('event', 'call_click', { event_category: 'engagement', event_label: label });
+    gtag('event', 'call_click', { link_location: label });
   }
 }
 
-function trackFormSubmit(label) {
+function trackEmail(label) {
   if (typeof gtag === 'function') {
-    gtag('event', 'form_submit', { event_category: 'engagement', event_label: label });
+    gtag('event', 'email_click', { link_location: label });
+  }
+}
+
+function trackFormSubmit(formName) {
+  if (typeof gtag === 'function') {
+    gtag('event', formName === 'website-feedback' ? 'feedback_submit' : 'generate_lead', { form_name: formName });
   }
 }
 
 function trackOutbound(label) {
   if (typeof gtag === 'function') {
-    gtag('event', 'outbound_click', { event_category: 'engagement', event_label: label });
+    gtag('event', 'outbound_click', { link_location: label });
   }
+}
+
+// Phone and email links that have no inline handler (footer, contact cards) are still counted
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+  if (!a || a.hasAttribute('onclick')) return;
+  var where = a.closest('footer') ? 'footer' : (a.closest('.contact-card') ? 'contact_card' : 'page');
+  if (a.getAttribute('href').indexOf('tel:') === 0) trackCall(where + '_phone_link');
+  else trackEmail(where + '_email_link');
+});
+
+function prefersReducedMotion() {
+  return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 }
 
 // Netlify Forms AJAX submission
@@ -70,10 +91,12 @@ function initContactForm() {
     })
       .then(function (response) {
         if (!response.ok) throw new Error('Submission failed');
-        trackFormSubmit(form.getAttribute('name') + '_form');
+        trackFormSubmit(form.getAttribute('name'));
         form.style.display = 'none';
         status.textContent = "Thank you! Your message has been sent — I'll be in touch soon.";
         status.className = 'form-status success';
+        status.setAttribute('tabindex', '-1');
+        status.focus();
       })
       .catch(function () {
         status.textContent = 'Something went wrong sending your message. Please call (360) 381-4022 instead.';
@@ -98,7 +121,7 @@ function initGalleryCarousel() {
   function makeClone(slide) {
     var c = slide.cloneNode(true);
     c.setAttribute('aria-hidden', 'true');
-    c.querySelectorAll('img').forEach(function (img) { img.alt = ''; img.loading = 'eager'; });
+    c.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
     return c;
   }
   for (var i = 0; i < CLONES; i++) {
@@ -111,7 +134,7 @@ function initGalleryCarousel() {
     return slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
   }
   function centerOn(slide) {
-    track.scrollTo({ left: centerScroll(slide), behavior: 'smooth' });
+    track.scrollTo({ left: centerScroll(slide), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
   }
   function jumpTo(left) {
     track.style.scrollSnapType = 'none';
@@ -178,8 +201,14 @@ function initGalleryCarousel() {
     if (i >= 0 && i < list.length) { e.preventDefault(); centerOn(list[i]); }
   });
 
+  // Re-center once everything has loaded (fonts/images can shift layout), but never yank
+  // the carousel back if the visitor has already started swiping or scrolling it.
+  var interacted = false;
+  ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(function (evt) {
+    track.addEventListener(evt, function () { interacted = true; }, { passive: true });
+  });
   startPosition();
-  window.addEventListener('load', startPosition);
+  window.addEventListener('load', function () { if (!interacted) startPosition(); });
   var resizeTimer = null;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
@@ -209,10 +238,12 @@ function initNetlifyForm(formId, statusId, successMessage, failureMessage) {
     })
       .then(function (response) {
         if (!response.ok) throw new Error('Submission failed');
-        trackFormSubmit(formId);
+        trackFormSubmit(form.getAttribute('name'));
         form.style.display = 'none';
         status.textContent = successMessage;
         status.className = 'form-status success';
+        status.setAttribute('tabindex', '-1');
+        status.focus();
       })
       .catch(function () {
         status.textContent = failureMessage;
@@ -240,7 +271,8 @@ if (document.readyState === 'loading') {
   setTimeout(initAll, 0);
 }
 
-// Album page photo viewer
+// Album page photo viewer: thumbnails in the grid, full-size photo + group/date/photographer caption in the viewer.
+// Arrow keys, Esc, swipe on touch screens, focus stays inside the viewer while it is open.
 (function initAlbumLightbox() {
   var grid = document.getElementById('albumGrid');
   if (!grid) return;
@@ -253,26 +285,54 @@ if (document.readyState === 'loading') {
   box.innerHTML =
     '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close">&times;</button>' +
     '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo">&#8249;</button>' +
-    '<img alt="">' +
+    '<figure class="lightbox-figure"><img alt=""><figcaption class="lightbox-caption"></figcaption></figure>' +
     '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo">&#8250;</button>';
   document.body.appendChild(box);
-  var big = box.querySelector('img'), current = 0, lastFocus = null;
+  var big = box.querySelector('img'), caption = box.querySelector('.lightbox-caption');
+  var buttons = box.querySelectorAll('.lightbox-btn');
+  var behind = document.querySelectorAll('header.site-header, main, footer.site-footer');
+  var current = 0, lastFocus = null;
 
+  function captionFor(item) {
+    var group = item.closest('.album-group');
+    if (!group) return '';
+    var parts = [];
+    ['h2', '.album-date', '.album-credit'].forEach(function (sel) {
+      var el = group.querySelector(sel);
+      if (el) parts.push(el.textContent.trim());
+    });
+    return parts.join(' \u00b7 ');
+  }
+  function fullSrc(item) {
+    return item.getAttribute('data-full') || item.querySelector('img').src;
+  }
   function show(i) {
     current = (i + items.length) % items.length;
-    var src = items[current].querySelector('img');
-    big.src = src.currentSrc || src.src;
-    big.alt = src.alt;
+    var item = items[current], thumb = item.querySelector('img'), full = fullSrc(item);
+    big.alt = thumb.alt;
+    caption.textContent = captionFor(item);
+    // Show the already-loaded thumbnail instantly, then swap in the sharp full-size photo
+    big.src = thumb.currentSrc || thumb.src;
+    var sharp = new Image();
+    sharp.onload = function () { if (items[current] === item) big.src = full; };
+    sharp.src = full;
+    // Warm the cache for the neighbours so next/previous feels instant
+    [current - 1, current + 1].forEach(function (n) { new Image().src = fullSrc(items[(n + items.length) % items.length]); });
+  }
+  function setBackgroundInert(on) {
+    Array.prototype.forEach.call(behind, function (el) { if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
   }
   function open(i) {
-    lastFocus = document.activeElement;
+    if (!box.classList.contains('open')) lastFocus = document.activeElement;
     show(i);
     box.classList.add('open');
+    setBackgroundInert(true);
     document.body.style.overflow = 'hidden';
     box.querySelector('.lightbox-close').focus();
   }
   function close() {
     box.classList.remove('open');
+    setBackgroundInert(false);
     document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus();
   }
@@ -286,5 +346,22 @@ if (document.readyState === 'loading') {
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowLeft') show(current - 1);
     else if (e.key === 'ArrowRight') show(current + 1);
+    else if (e.key === 'Tab') {
+      // Keep keyboard focus inside the viewer
+      var first = buttons[0], last = buttons[buttons.length - 1];
+      if (!box.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
+
+  // Swipe left/right on touch screens
+  var touchX = 0, touchY = 0;
+  box.addEventListener('touchstart', function (e) {
+    touchX = e.changedTouches[0].clientX; touchY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
 })();

@@ -49,6 +49,7 @@
   --rose-darker: #6f4b45;
   --border-color: #e2d6b8;
   --star: #c2a355;
+  --star-text: #725a16; /* darker gold for text on the pale hero (the light gold is only ~2.4:1 there; this is 4.8:1 even over the hero's bluer bottom edge) */
 }
 
 * { box-sizing: border-box; }
@@ -373,7 +374,7 @@ section:has(> .bg-lbird) > .container { position: relative; z-index: 1; }
   color: var(--ink-muted);
 }
 .hero-badges span { white-space: nowrap; }
-.hero-badges .stars { color: var(--star); letter-spacing: 1px; }
+.hero-badges .stars { color: var(--star-text); letter-spacing: 1px; }
 /* On narrow phones the no-wrap badges were wider than the screen and pushed the whole hero off-center */
 @media (max-width: 420px) {
   .hero-badges { gap: 10px 20px; font-size: 1rem; }
@@ -581,7 +582,8 @@ p.section-sub {
 .area-card .area-name { font-weight: 700; color: var(--blue-darker); font-size: 1.05rem; font-family: "Playfair Display", serif; }
 
 /* About / trust */
-.about-section { position: relative; }
+/* overflow: hidden stops the decorative cloud that bleeds past the right edge from widening the page (iOS Safari can pan sideways) */
+.about-section { position: relative; overflow: hidden; }
 .about-section .container {
   position: relative;
   z-index: 1;
@@ -764,7 +766,7 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
 .social-icons a.icon-knot { background-image: url('../images/theknot-icon.png'); }
 .footer-bottom {
   font-size: 0.82rem;
-  color: #9aa9a8;
+  color: #b0bdbc;
   border-top: 1px solid rgba(251, 247, 238, 0.12);
   padding-top: 18px;
   width: 100%;
@@ -828,7 +830,10 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
   padding: 24px;
 }
 .lightbox.open { display: flex; }
-.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.lightbox-figure { margin: 0; max-width: 100%; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.lightbox img { max-width: 100%; max-height: calc(100vh - 110px); max-height: calc(100dvh - 110px); object-fit: contain; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.lightbox-caption { color: #e6edef; font-size: 0.92rem; text-align: center; line-height: 1.4; max-width: min(90vw, 640px); }
+.lightbox-btn:focus-visible { outline: 3px solid var(--blue-vivid); outline-offset: 2px; }
 .lightbox-btn {
   position: absolute;
   width: 46px;
@@ -858,3 +863,28 @@ footer.site-footer { background: var(--blue-darker); color: #cbd6d6; padding: 44
 .album-group-head h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 1.85rem); color: var(--blue-darker); }
 .album-date { margin: 0; color: var(--ink-muted); font-size: 1rem; }
 .album-credit { margin: 0 0 0 auto; color: var(--ink-muted); font-size: 0.95rem; font-style: italic; }
+
+/* Required-field marker and form hint */
+.req { color: var(--rose-deep); font-weight: 700; }
+.form-note { margin: 0; font-size: 0.88rem; color: var(--ink-muted); }
+
+/* Privacy policy page */
+.legal-section { background: #fff; }
+.legal-section .container { max-width: 760px; }
+.legal-section h2 { color: var(--blue-darker); font-size: 1.4rem; margin: 34px 0 12px; }
+.legal-section h2:first-child { margin-top: 0; }
+.legal-section p, .legal-section li { color: var(--ink-muted); font-size: 1.01rem; }
+.legal-section ul { padding-left: 22px; margin: 0 0 16px; }
+.legal-section li { margin-bottom: 6px; }
+.legal-section a { color: var(--blue-darker); font-weight: 600; text-decoration: underline; }
+
+/* Respect "reduce motion" settings: no smooth scrolling, no sliding/fading effects */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
